@@ -1,0 +1,94 @@
+{
+    "tests": [
+        {
+            "name": "Exercise 1.9",
+            "setup": "",
+            "run": "cat section-5/ex-1-09.txt | python3 .github/classroom/ex-1-09_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 10
+        },
+        {
+            "name": "Exercise 1.10",
+            "setup": "",
+            "run": "cat section-5/ex-1-10.txt | python3 .github/classroom/ex-1-10_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 10
+        },
+        {
+            "name": "Exercise 1.11",
+            "setup": "",
+            "run": "cat section-6/spring.Dockerfile | python3 .github/classroom/ex-1-11_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 20
+        },
+        {
+            "name": "Exercise 1.12 Dockerfile",
+            "setup": "",
+            "run": "cat section-6/frontend.Dockerfile | python3 .github/classroom/ex-1-12_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 10
+        },
+        {
+            "name": "Exercise 1.12 copying the message",
+            "setup": "",
+            "run": "cat section-6/ex-1-12.txt | python3 .github/classroom/ex-1-12b_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 10
+        },
+        {
+            "name": "Exercise 1.13",
+            "setup": "",
+            "run": "cat section-6/backend.Dockerfile | python3 .github/classroom/ex-1-13_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 20
+        },
+        {
+            "name": "Exercise 1.14 backend",
+            "setup": "",
+            "run": "cat section-6/backend.Dockerfile | python3 .github/classroom/ex-1-14_backend_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 5
+        },
+        {
+            "name": "Exercise 1.14 frontend",
+            "setup": "",
+            "run": "cat section-6/frontend.Dockerfile | python3 .github/classroom/ex-1-14_frontend_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 5
+        },
+        {
+            "name": "Exercise 1.14 copying the message",
+            "setup": "",
+            "run": "cat section-6/ex-1-14.txt | python3 .github/classroom/ex-1-14b_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 10
+        }
+    ]
+}
