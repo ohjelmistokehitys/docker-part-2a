@@ -101,7 +101,7 @@ docker compose --file docker-compose-scaling.yml up
 
 When the services are running, the backend should be listening to http://compute.localtest.me or just simply http://localhost. If the backend is working, it should respond with a simple "hello world". Open the frontend in your browser at http://localhost:3000. When you press the green button, you will see the application making slow progress in computation. You will also see logging entries in the console where you started the containers.
 
-The compute service (i.e. backend) has been made slow on purpose. Your task in this exercise is to start the Docker containers so that the `compute` service has multiple containers and the *load-balancer* shares distributes the requests between them. When you are successful, you will notice the progress bar filling faster in the UI, and also the logging entries from the Docker containers will appear more frequently.
+The compute service (i.e. backend) has been made slow on purpose. Your task in this exercise is to start the Docker containers so that the `compute` service has multiple containers and the *load-balancer* distributes the requests between them. When you are successful, you will notice the progress bar filling faster in the UI, and also the logging entries from the Docker containers will appear more frequently.
 
 You **should not** need to make any changes in the containers nor the Docker compose file. Instead, you will need to change the command that is used for starting the containers:
 
