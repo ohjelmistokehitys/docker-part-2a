@@ -68,7 +68,7 @@ If your frontend was built in the previous exercise with the name `section-1-fro
 >
 > Source: https://devopswithdocker.com/part-2/section-2/#exercise-24
 >
-> <sup>1</sup> *or by visiting http://localhost:8080/ping?redis=true*
+> <sup>1</sup> *or by visiting http://localhost:8080/ping?redis=true in your browser*
 
 **Save the Docker compose configuration you write in this exercise in the file [docker-compose-with-redis.yml](./docker-compose-with-redis.yml). Also, copy the message you see in your browser after pressing the "press to test" button successfully in file [ex-2-04.txt](./ex-2-04.txt).**
 

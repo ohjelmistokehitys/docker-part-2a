@@ -1,4 +1,6 @@
 # This Docker compose file is needed in exercise 2.5
+# You should not need to modify this file.
+#
 # See the readme at https://github.com/docker-hy/material-applications/tree/main/scaling-exercise
 # This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
 
@@ -18,7 +20,7 @@ services:
     environment:
       - VIRTUAL_HOST=compute.localtest.me
 
-  # The load balancer should share the load from the frontend across multiple backend containers
+  # the load balancer should share the load from the frontend across multiple backend containers
   load-balancer:
     image: jwilder/nginx-proxy
     volumes:
@@ -26,7 +28,7 @@ services:
     ports:
       - 80:80
 
-    # This was added at Haaga-Helia
+    # all requests are handled by the compute service by default
     environment:
       - DEFAULT_HOST=compute.localtest.me
 

@@ -1,10 +1,3 @@
 # implement your solution in exercise 2.2 here
 
-version: '3.8'
 
-services:
-  simple-web-service:
-    image: devopsdockeruh/simple-web-service
-    ports:
-      - "8080:8080"
-    command: server

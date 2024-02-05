@@ -1,4 +1,2 @@
 # Copy the command(s) you used in exercise 2.5 below:
 docker compose ...
-
-docker compose --file ./section-2/docker-compose-scaling.yml up --scale compute=5
