@@ -1,20 +1,15 @@
-# DevOps with Docker part 1b
+# DevOps with Docker part 2a
 
-This repository contains templates and automated checks for the part 1 in [DevOps with Docker course](https://devopswithdocker.com/):
+This repository contains templates and automated checks for the part 2 in [DevOps with Docker course](https://devopswithdocker.com/):
 
-* [Defining start conditions for the container](https://devopswithdocker.com/part-1/section-4) (no exercises in this part)
-* [Interacting with the container via volumes and ports](https://devopswithdocker.com/part-1/section-5)
-* [Utilizing tools from the Registry](https://devopswithdocker.com/part-1/section-6)
+* [Migrating to Docker Compose (devopswithdocker.com)](https://devopswithdocker.com/part-2/section-1)
 
-The exercises are grouped in folders by their sections in the [DevOps with Docker](https://devopswithdocker.com) course:
+    [Exercises 2.1-2.3](./section-1/)
 
-* [**section-5**](./section-5/)
+* [Docker networking (devopswithdocker.com)](https://devopswithdocker.com/part-2/section-2)
 
-    Exercises 1.9 and 1.10
+    [Exercises 2.4 and 2.5](./section-2/)
 
-* [**section-6**](./section-6/)
-
-    Exercises 1.11-1.14
 
 
 ## How to complete this exercise
