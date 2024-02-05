@@ -16,9 +16,9 @@ The theory for the following exercises is presented at https://devopswithdocker.
 >
 > Source: https://devopswithdocker.com/part-2/section-1/#exercise-21
 
-**Save the Docker compose configuration you write in this exercise in the file [docker-compose-logging.yml](./docker-compose-logging.yml). Configure the compose file to write the output in the existing [`logs/text.log` file](./logs/text.log) in the local filesystem.**
+**Save the Docker compose configuration you write in this exercise in the file [docker-compose-logging.yml](./docker-compose-logging.yml).** Configure the compose file to write the output in the existing [`logs/text.log` file](./logs/text.log) in the local filesystem.
 
-💡 *As the file in this exercise is named other than the default docker-compose.yml, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-logging.yml up`
+💡 *As the file in this exercise is named other than the default `docker-compose.yml`, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-logging.yml up`
 
 
 ## Exercise 2.2 (20 %)
@@ -35,7 +35,7 @@ The theory for the following exercises is presented at https://devopswithdocker.
 
 **Save the Docker compose configuration you write in this exercise in the file [docker-compose-server.yml](./docker-compose-server.yml).**
 
-💡 *As the file in this exercise is named other than the default docker-compose.yml, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-server.yml up`
+💡 *As the file in this exercise is named other than the default `docker-compose.yml`, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-server.yml up`
 
 
 ## Exercise 2.3 (20 %)
@@ -54,5 +54,5 @@ The theory for the following exercises is presented at https://devopswithdocker.
 
 You will also need to update the contents of[ `frontend.Dockerfile`](./frontend.Dockerfile) and [`backend.Dockerfile`](./backend.Dockerfile) to match your solutions in the previous exercises.
 
-💡 *As the file in this exercise is named other than the default docker-compose.yml, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-frontend-and-backend.yml up`
+💡 *As the file in this exercise is named other than the default `docker-compose.yml`, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-frontend-and-backend.yml up`
 
