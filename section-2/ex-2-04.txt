@@ -1,0 +1,4 @@
+# Copy the message you see after pressing the "press to test" button successfully:
+Exercise 2.4: Nice...
+
+Exercise 2.4: Nice! The exercise is complete!

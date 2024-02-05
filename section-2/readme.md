@@ -1,162 +1,112 @@
-# Part 1 section 6: Utilizing tools from the Registry
+# Part 2 section 2: Docker networking
 
-The theory for the following exercises is presented at https://devopswithdocker.com/part-1/section-6.
-
-To complete these exercises, you'll need to clone, fork or download sample projects from [https://github.com/docker-hy/material-applications](https://github.com/docker-hy/material-applications). You don't need to include the sample projects in your exercise repository when returning the exercises.
-
-📣 Notice that all the information presented in the example projects are not needed in all the exercises. Don't just copypaste, but consider which commands are useful and where.
-
-📣 **You don't need to install any of the tools or applications used by the sample projects locally.** All installations are supposed to happen in the containers during the build process.
+The theory for the following exercises is presented at https://devopswithdocker.com/part-2/section-2.
 
 
-## Exercise 1.11: Spring *(20 %)*
+**Avoid copying and pasting**
 
-> Create a Dockerfile for an old Java Spring project that can be found from the [course repository](https://github.com/docker-hy/material-applications/tree/main/spring-example-project).
->
-> The setup should be straightforward with the README instructions. Tips to get you started:
->
-> Use [openjdk image](https://hub.docker.com/_/openjdk) `FROM openjdk:_tag_` to get Java instead of installing it manually. Pick the tag by using the README and Docker Hub page.
->
-> You've completed the exercise when you see a 'Success' message in your browser.
->
-> Submit the Dockerfile you used to build the container.
->
-> Source: https://devopswithdocker.com/part-1/section-6/#exercises-111-114
+In these exercises you need to use the same containers and images used in the previous exercises. You *could* just copy the Dockerfiles and example applications here, but there are also better options.
 
-**Save your solution for this exercise in the file [spring.Dockerfile](./spring.Dockerfile).**
+If you want, you can reference the existing Dockerfiles in [section-1](../section-1/) folder with a relative path (`../section-1`) from this folder:
 
-💡 The Dockerfiles in these exercises have custom names, so you will need to [specify which file to use when building the container images](https://docs.docker.com/engine/reference/commandline/image_build/#file). In this exercise, you'll need to use the file called [spring.Dockerfile](./server.Dockerfile), so your build command could be something like:
-
-```sh
-docker build . --file spring.Dockerfile --tag spring-example
+```
+...
+  frontend:
+    build:
+      context: ../section-1/
+      dockerfile: frontend.Dockerfile
+...
 ```
 
+Alternatively, you can use the images that have already been built locally instead of building new ones. As you remember from part 1, you can list your local images with `docker images`:
 
-## Exercises 1.12-1.14
+```
+$ docker images
+REPOSITORY           TAG      IMAGE ID       SIZE
+section-1-frontend   latest   3ec8181f97e0   1.27GB
+section-1-backend    latest   421cf3f71507   1.06GB
+```
 
-> The following three exercises will start a larger project that we will configure in parts 2 and 3. They will require you to use everything you've learned up until now. If you need to modify a Dockerfile in some later exercises, feel free to do it on top of the Dockerfiles you create here.
->
-> Source: https://devopswithdocker.com/part-1/section-6/#exercises-111-114
+If your frontend was built in the previous exercise with the name `section-1-frontend`, your Docker compose file for the next exercise might have something like this:
 
+```
+...
+  frontend:
+    image: section-1-frontend
+...
+```
 
-## Exercise 1.12: Hello, frontend! *(20 %)*
-
-> A good developer creates well-written READMEs. Such that they can be used to create Dockerfiles with ease.
+> **Security reminder: Plan your infrastructure and keep to your plan**
 >
-> Clone, fork or download the project from
-> [https://github.com/docker-hy/material-applications/tree/main/example-frontend](https://github.com/docker-hy/material-applications/tree/main/example-frontend).
+> In the next exercise, and in some later exercises, I will supply you with an illustration of the infrastructure. Do look at it and use it to write the configuration.
 >
-> Create a Dockerfile for the project (example-frontend) and give a command so that the project runs in a Docker container with port 5000
-> exposed and published so when you start the container and navigate to [http://localhost:5000](http://localhost:5000)
-> you will see message if you're successful.
+> For example, in Exercise 2.4 we don't want to open ports to Redis to the outside world. Do not add a `ports` configuration under Redis! The backend will be able to access the application within the Docker network.
 >
-> * note that the port 5000 is reserved in the more recent OSX versions (Monterey, Big Sur), so you have to use some other host port
->
-> _As in other exercises, do not alter the code of the project_
->
-> * TIP: The project has install instructions in README.
->
-> * TIP: Note that the app starts to accept connections when "Accepting connections at http://localhost:5000" has been printed to the screen, this takes a few seconds
->
-> * TIP: You do not have to install anything new on your computer (instead, the installation should be done inside the containers).
->
-> Source: https://devopswithdocker.com/part-1/section-6/#exercises-111-114
-
-**Save your solution for this exercise in the file [frontend.Dockerfile](./frontend.Dockerfile). Also, save the message you received in the browser in the file [ex-1-12.txt](./ex-1-12.txt).**
-
-📣 **Note!** Based on the Haaga-Helia teacher's experience, the dependencies of the frontend project are very picky about the Node.js version and the environment in general. We strongly recommend using **node:16** base image in this exercise to prevent unnecessary compatibility issues (`FROM node:16`).
+> Source: https://devopswithdocker.com/part-2/section-2/
 
 
-## Exercise 1.13: Hello, backend! *(20 %)*
+## Exercise 2.4 (10 + 10 %)
 
-> Clone, fork or download a project from
-> [https://github.com/docker-hy/material-applications/tree/main/example-backend](https://github.com/docker-hy/material-applications/tree/main/example-backend).
+> In this exercise you should expand the configuration done in [Exercise 2.3](https://devopswithdocker.com/part-2/section-1#exercises-22---23) and set up the example backend to use the key-value database [Redis](https://redis.com/).
 >
-> Create a Dockerfile for the project (example-backend). Start the container with port 8080 published.
+> Redis is quite often used as a [cache](https://en.wikipedia.org/wiki/Cache_(computing)) to store data so that future requests for data can be served faster.
 >
-> When you start the container and navigate to [http://localhost:8080/ping](http://localhost:8080/ping) you should get a "pong" as response.
+> The backend uses a slow API to fetch some information. You can test the slow API by requesting `/ping?redis=true` with curl<sup>1</sup>. The frontend app has a button to test this.
 >
-> _Do not alter the code of the project_
+> So you should improve the performance of the app and configure a Redis container to cache information for the backend. The
+> [documentation](https://hub.docker.com/_/redis/) of the Redis image might contain some useful info.
 >
-> Source: https://devopswithdocker.com/part-1/section-6/#exercises-111-114
+> The backend [README](https://github.com/docker-hy/material-applications/tree/main/example-backend) should have all the information that is needed for configuring the backend.
+>
+> When you've correctly configured the button will turn green.
+>
+> Submit the docker-compose.yml
+>
+> ![Backend, frontend and redis](./back-front-and-redis.png)
+>
+> The [restart: unless-stopped](https://docs.docker.com/compose/compose-file/compose-file-v3/#restart) configuration can help if the Redis takes a while to get ready.
+>
+> Source: https://devopswithdocker.com/part-2/section-2/#exercise-24
+>
+> <sup>1</sup> *or by visiting http://localhost:8080/ping?redis=true*
 
-**Save your solution for this exercise in the file [backend.Dockerfile](./backend.Dockerfile).**
+**Save the Docker compose configuration you write in this exercise in the file [docker-compose-with-redis.yml](./docker-compose-with-redis.yml). Also, copy the message you see in your browser after pressing the "press to test" button successfully in file [ex-2-04.txt](./ex-2-04.txt).**
 
-💡 The backend in this exercise is written in [Go (golang)](https://go.dev/). **You won't need to learn Go or install any Go related tooling**. Instead, use an official [Go base image](https://hub.docker.com/_/golang) and **follow the instructions in the readme** to install and start the backend.
+💡 *If you are stuck, start by adding a [Redis](https://hub.docker.com/_/redis/) service in your Docker compose file. Then, see how you can configure the backend to utilize the Redis container by using an environment variable.*
 
-
-## Exercise 1.14: Environment *(20 %)*
-
-> Start both frontend-example and backend-example with correct ports exposed and add ENV to Dockerfile with necessary information from both READMEs
-> ([front](https://github.com/docker-hy/material-applications/tree/main/example-frontend), [back](https://github.com/docker-hy/material-applications/tree/main/example-backend)).
->
-> Ignore the backend configurations until frontend sends requests to `_backend_url_/ping` when you press the button.
->
-> You know that the configuration is ready when the button for 1.14 of frontend-example responds and turns green.
->
-> _Do not alter the code of either project_
->
-> Submit the edited Dockerfiles and commands used to run.
->
-> ![Backend and Frontend](./back-and-front.png)
->
-> The frontend will first talk to your browser. Then the code will be executed from your browser and that will send a message to backend.
->
-> ![More information about connection between frontend and backend](./about-connection-front-back.png)
->
-> * TIP: When configuring web applications keep browser developer console ALWAYS open, F12 or cmd+shift+I when the browser window is open. Information about configuring cross origin requests is in README of the backend project.
->
-> * TIP: Developer console has multiple views, most important ones are Console and Network. Exploring the Network tab can give you a lot of information on where messages are being sent and what is received as response!
->
-> Source: https://devopswithdocker.com/part-1/section-6/#exercises-111-114
-
-**To complete this exercise, you need to make changes in the [backend.Dockerfile](./backend.Dockerfile) and [frontend.Dockerfile](./frontend.Dockerfile) files. Also, save the response text you see when you successfully click the "press to test!" button in the frontend in the file [ex-1-14.txt](./ex-1-14.txt).**
-
-💡 The challenge in this exercise is in enabling the frontend and the backend communicate with each other even when they are served from different origins, in this case different ports. "For security reasons, browsers restrict cross-origin HTTP requests initiated from scripts." [(MDN web docs)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
-
-> *"Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources"*
->
-> [Cross-Origin Resource Sharing (CORS). MDN web docs.](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
-
-You will need to configure the frontend to make connections to the backend using the correct address and port. The backend needs to expect connections from the correct frontend URL. Both applications can be configured to work together with environment variables and you do not need to make changes in their code.
+💡 *As the file in this exercise is named other than the default docker-compose.yml, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-with-redis.yml up`
 
 
-💡 *In case things are not working as supposed, triple check the environment variables. If you are using the default ports, the frontend should be served from port 5000 and make connections to the backend at port 8080. Backend should be served from port 8080 and allow connections from `http://localhost:5000`. In CORS you cannot mix ip addresses and hostnames (`127.0.0.1` is not the same as `localhost`). Also, `http://localhost` is not the same as `http://localhost:5000`.*
+## Exercise 2.5 (20 %)
 
--------------
-
-## Extra exercises 1.15-1.16
-
-The following exercises are extra and not a part of the Haaga-Helia course.
-
-
-## Exercise 1.15: Homework
-
-> Create Dockerfile for an application or any other dockerised project in any of your own repositories and publish it to Docker Hub. This can be any project, except the clones or forks of backend-example or frontend-example.
+> The project [https://github.com/docker-hy/material-applications/tree/main/scaling-exercise](https://github.com/docker-hy/material-applications/tree/main/scaling-exercise) is a barely working application. Go ahead and clone it for yourself (or read note below\*). The project already includes docker-compose.yml so you can start it by running `docker compose up`.
 >
-> For this exercise to be complete you have to provide the link to the project in Docker Hub, make sure you at least have a basic description and instructions for how to run the application in a [README](https://help.github.com/en/articles/about-readmes) that's available through your submission.
+> Application should be accessible through [http://localhost:3000](http://localhost:3000). However it doesn't work well enough and I've added a load balancer for scaling. Your task is to scale the `compute` containers so that the button in the application turns green.
 >
-> https://devopswithdocker.com/part-1/section-6/#exercises-115-116
+> This exercise was created with [Sasu Mäkinen](https://github.com/sasumaki)
+>
+> Source: https://devopswithdocker.com/part-2/section-2/#exercises-25
 
-There are no automated tests for this extra exercise. You don't need to submit anything, but if you wish, you can add a new file with information about your Docker Hub experience.
+\* Note that you do not actually need to clone the source code for this exercise. The [scaling-exercise-calculator](https://hub.docker.com/r/devopsdockeruh/scaling-exercise-calculator) and [scaling-exercise-compute](https://hub.docker.com/r/devopsdockeruh/scaling-exercise-compute) as well as the [jwilder/nginx-proxy](https://hub.docker.com/r/jwilder/nginx-proxy) images have been published in [Docker hub](https://hub.docker.com). We have also added the Docker compose file from that repository here: [docker-compose-scaling.yml](./docker-compose-scaling.yml).
 
+**📝 Additional info about this exercise**
 
-## Exercise 1.16: Cloud deployment
+Think about the *calculator* as the frontend and the *compute* as the backend. Unlike the previous examples we've had, now the backend does not have any published ports. Instead, all requests to the backend should come through the *load-balancer* container. You can see the set-up in the [docker-compose-scaling.yml](./docker-compose-scaling.yml) file.
 
-> It is time to wrap up this part and run a containerized app in the cloud.
->
-> You can take any web-app, eg. an example or exercise from this part, your own app, or even the course material (see [devopsdockeruh/coursepage](https://hub.docker.com/r/devopsdockeruh/coursepage)) and deploy it to some cloud provider.
->
-> There are plenty of alternatives, and most provide a free tier. Here are some alternatives that are quite simple to use:
->
-> - [fly.io](https://fly.io) (easy to use but needs a credit card even in the free tier)
-> - [render.com](https://render.com) (bad documentation, you most likely need google)
-> - [heroku.com](https://heroku.com) (has a free student plan through [GitHub Student Developer Pack](https://www.heroku.com/github-students))
->
-> If you know a good cloud service for the purposes of this exercise, please tell us (yes, we know about Amazon AWS, Google Cloud and Azure already... ).
->
-> Submit the Dockerfile, a brief description of what you did, and a link to the running app.
->
-> Source: https://devopswithdocker.com/part-1/section-6/#exercises-115-116
+Try starting the services defined in that file with the following command:
 
-There are no automated tests for this extra exercise. You don't need to submit anything, but if you wish, you can add a new file with information about your deployment experience.
+```
+docker compose --file docker-compose-scaling.yml up
+```
+
+When the services are running, the backend should be listening to http://compute.localtest.me or just simply http://localhost. If the backend is working, it should respond with a simple "hello world". Open the frontend in your browser at http://localhost:3000. When you press the green button, you will see the application making slow progress in computation. You will also see logging entries in the console where you started the containers.
+
+The compute service (i.e. backend) has been made slow on purpose. Your task in this exercise is to start the Docker containers so that the `compute` service has multiple containers and the *load-balancer* shares distributes the requests between them. When you are successful, you will notice the progress bar filling faster in the UI, and also the logging entries from the Docker containers will appear more frequently.
+
+You **should not** need to make any changes in the containers nor the Docker compose file. Instead, you will need to change the command that is used for starting the containers:
+
+```
+docker compose --file docker-compose-scaling.yml up  # TODO
+```
+
+**Save the commands used in this exercise in the file [ex-2-05.txt](./ex-2-05.txt).**

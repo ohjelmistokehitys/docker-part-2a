@@ -29,6 +29,36 @@
             "comparison": "included",
             "timeout": 1,
             "points": 20
+        },
+        {
+            "name": "Exercise 2.4 compose file",
+            "setup": "",
+            "run": "docker compose --file ./section-2/docker-compose-with-redis.yml config | python3 .github/classroom/ex-2-04a_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 10
+        },
+        {
+            "name": "Exercise 2.4 text file",
+            "setup": "",
+            "run": "cat ./section-2/ex-2-04.txt | python3 .github/classroom/ex-2-04b_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 10
+        },
+        {
+            "name": "Exercise 2.5",
+            "setup": "",
+            "run": "cat ./section-2/ex-2-05.txt | python3 .github/classroom/ex-2-05_test.py",
+            "input": "",
+            "output": "",
+            "comparison": "included",
+            "timeout": 1,
+            "points": 20
         }
     ]
 }

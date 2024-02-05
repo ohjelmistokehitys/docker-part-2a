@@ -4,7 +4,7 @@ The theory for the following exercises is presented at https://devopswithdocker.
 
 
 
-## Exercise 2.1
+## Exercise 2.1 (20 %)
 
 > Let us now leverage the Docker Compose with the simple webservice that we used in the [Exercise 1.3](https://devopswithdocker.com/part-1/section-2#exercise-13)
 >
@@ -21,7 +21,7 @@ The theory for the following exercises is presented at https://devopswithdocker.
 💡 *As the file in this exercise is named other than the default docker-compose.yml, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-logging.yml up`
 
 
-## Exercise 2.2
+## Exercise 2.2 (20 %)
 
 > Read about how to add command to docker-compose.yml from the [documentation](https://docs.docker.com/compose/compose-file/compose-file-v3/#command).
 >
@@ -38,7 +38,7 @@ The theory for the following exercises is presented at https://devopswithdocker.
 💡 *As the file in this exercise is named other than the default docker-compose.yml, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-server.yml up`
 
 
-## Exercise 2.3
+## Exercise 2.3 (20 %)
 
 > As we saw previously, starting an application with two programs was not trivial and the commands got a bit long.
 >
@@ -52,4 +52,7 @@ The theory for the following exercises is presented at https://devopswithdocker.
 
 **Save the Docker compose configuration you write in this exercise in the file [docker-compose-frontend-and-backend.yml](./docker-compose-frontend-and-backend.yml).**
 
-You will also need to update the contents of `frontend.Dockerfile` and `backend.Dockerfile` to match your solutions in the previous exercises.
+You will also need to update the contents of[ `frontend.Dockerfile`](./frontend.Dockerfile) and [`backend.Dockerfile`](./backend.Dockerfile) to match your solutions in the previous exercises.
+
+💡 *As the file in this exercise is named other than the default docker-compose.yml, you will need to specify in your command which file to use. You can do this by adding the `--file` attribute in your command:* `docker compose --file docker-compose-frontend-and-backend.yml up`
+

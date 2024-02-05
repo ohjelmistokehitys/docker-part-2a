@@ -1,0 +1,22 @@
+# implement your solution in exercise 2.4 here
+
+version: '3.8'
+
+services:
+  backend:
+    image: section-1-backend
+
+    environment:
+      - REDIS_HOST=redis
+
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: section-1-frontend
+
+    ports:
+      - "5000:5000"
+
+  redis:
+    image: redis
