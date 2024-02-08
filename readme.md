@@ -2,14 +2,16 @@
 
 This repository contains templates and automated checks for the part 2 in [DevOps with Docker course](https://devopswithdocker.com/):
 
-* [Migrating to Docker Compose (devopswithdocker.com)](https://devopswithdocker.com/part-2/section-1)
+* **Migrating to Docker Compose** [(devopswithdocker.com)](https://devopswithdocker.com/part-2/section-1)
 
-    [Exercises 2.1-2.3](./section-1/)
+    [./section-1/](./section-1/) *(exercises 2.1-2.3)*
 
-* [Docker networking (devopswithdocker.com)](https://devopswithdocker.com/part-2/section-2)
+* **Docker networking** [(devopswithdocker.com)](https://devopswithdocker.com/part-2/section-2)
 
-    [Exercises 2.4 and 2.5](./section-2/)
+    [./section-2/](./section-2/) *(exercises 2.4 and 2.5)*
 
+
+In addition to using the course materials, we recommend watching a few YouTube videos that explain Docker compose on a higher level of abstraction. A good one to start with is the ["Docker Compose will BLOW your MIND!! (a tutorial)"](https://youtu.be/DM65_JyGxCo) video on the [NetworkChuck](https://www.youtube.com/@NetworkChuck) channel.
 
 
 ## How to complete this exercise
